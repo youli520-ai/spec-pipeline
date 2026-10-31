@@ -2,6 +2,8 @@
 
 **AI agent 开发的轻量流程治理：文件夹状态机 + 机器硬闸 + 事后审计。**
 
+by [youli520-ai](https://github.com/youli520-ai)
+
 > When AI agents write most of your code, the bottleneck is no longer typing —
 > it's making sure the right things get done in the right order, and that you
 > can still trust the result. This is a ~700-line, zero-dependency control
@@ -99,17 +101,6 @@ node scripts/pipeline_ctl.mjs hot web/src/foo.ts  # 改动频率热点（叠补�
 不让派发会话自由发挥。折扣：同模型盲区会复现、过程在折叠调用里——**重要方案
 （数据链路/发版/安全）仍开独立会话或换模型**。
 
-## 与业界对照
-
-| 业界做法 | 本流水线 | 取舍 |
-| --- | --- | --- |
-| spec-kit 的 constitution（章程约束） | 原则表 + checklist 内嵌 | 无需新建机制 |
-| spec-kit 的 `/analyze` 跨工件一致性 | 判据行数核对 | 弱启发式，只报不拦 |
-| OpenSpec 提案先审后行 | 00 准入 + 审核关 | — |
-| BMAD 角色化 agent（PM/Architect/QA） | 独立上下文制衡 | 不做角色扮演——「角色提示 ≠ 独立专业」，错误假设会在 persona 间放大 |
-| Task Master PRD→任务图 | spec 依赖字段 | 大任务图对单人流水线过重 |
-| spec-kit 已知弱点「结构化谎言」（工件齐但内容漂移） | 硬闸只保证动作不保证质量 | 靠 R2 三方一致核对 + owner 抽查，承认边界 |
-
 ## 迁移到你的仓库（本地化清单）
 
 直接能用的：状态机、八道硬闸、五件套模板骨架、`status`/`show`/`hot`/`audit`、
@@ -129,13 +120,6 @@ node scripts/pipeline_ctl.mjs hot web/src/foo.ts  # 改动频率热点（叠补�
 **适用边界**：单人/小团队 + agent 主力开发、CI 轻或无、方案级工作占比高。
 不适用：大团队 + 完整 DevOps（PR review 已承担审核复核，再叠一层是过度工程）；
 强合规环境（这套太轻，trace 不够）。
-
-## 出处
-
-从 [HermesWebUI]（自托管 AI 工作台，单 owner + 多 agent 并行开发）的实战流程提炼，
-经过一轮完整对抗性审查（14 项绕过实测 → 「四道闸实为一道半」→ 八道硬闸修复 →
-21 项回归）与两轮自我复核（修掉 4 处自身设计错误 + 2 个回归期 bug）。
-所有「防什么/不防什么」的声明都有实测背书，不是设计意图。
 
 ## License
 
