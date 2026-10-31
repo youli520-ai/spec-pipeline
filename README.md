@@ -139,4 +139,9 @@ node scripts/pipeline_ctl.mjs hot web/src/foo.ts  # 改动频率热点（叠补�
 
 ## License
 
-MIT
+[**CC BY 4.0**](https://creativecommons.org/licenses/by/4.0/) —— 随便用：商用、修改、再分发、集成进闭源项目都可以。
+
+**唯一要求：署名** —— 注明作者 `youli520-ai` 并链接本仓库
+（https://github.com/youli520-ai/spec-pipeline）。
+
+Copyright (c) 2026 youli520-ai
